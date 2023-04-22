@@ -18,6 +18,16 @@ INSERT INTO region (id, name) VALUES
 (5, 'Africa'),
 (6, 'Australia');
 
-INSERT INTO projectdescription (id, user_id, content, created_at) VALUES
-(1, 1, 'I am excited to connect and work on a way to create sustainability in clothing industries to decrease fast fashion gas emissions' , '2023-04-21 15:30:00'),
-(2, 2, 'I am passionate about climate change and global warming I want to find a way to save the ocean by decreasing plastics from getting in the ocean' , '2023-04-22 10:00:00');
+INSERT INTO users (id, username, email, password, region_id, about) VALUES
+(1, 'john_doe', 'john_doe@example.com', 'password123', 1, 'Hello, I am John Doe.'),
+(2, 'jane_doe', 'jane_doe@example.com', 'password456', 3, 'Hello, I am Jane Doe.');
+
+INSERT INTO likes (id, user_id, post_id) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 3),
+(4, 2, 4);
+
+INSERT INTO about (id, user_id, content) VALUES
+(1, 1, 'I am excited to connect and work on a way to create sustainability in clothing industries to decrease fast fashion gas emissions'),
+(2, 2, 'I am passionate about climate change and global warming I want to find a way to save the ocean by decreasing plastics from getting in the ocean');
