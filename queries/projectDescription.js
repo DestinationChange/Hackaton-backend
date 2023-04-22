@@ -1,9 +1,9 @@
-const db = require("../db/db_config.js");
+const db = require("../db/dbConfig.js");
 
 //INDEX
 const getAllProjects = async () => {
   try {
-    const getAllProjects = await db.any("SELECT * FROM destinationchanges");
+    const getAllProjects = await db.any("SELECT * FROM projectDescription");
     return getAllProjects;
   } catch (error) {
     return error;
@@ -13,7 +13,10 @@ const getAllProjects = async () => {
 //SHOW
 const getAProject = async (id) => {
   try {
-    const getAProject = await db.one("SELECT * FROM destinationchanges WHERE id=$1", id);
+    const getAProject = await db.one(
+      "SELECT * FROM projectDescription WHERE id=$1",
+      id
+    );
     return getAProject;
   } catch (error) {
     return error;
@@ -24,13 +27,8 @@ const getAProject = async (id) => {
 const createProject = async (user_id) => {
   try {
     const createProject = await db.one(
-      "INSERT INTO destinationchanges (username, content, created_at) VALUES ($1, $2, $3) RETURNING *",
-      [
-        user_id.username,
-        user_id.content,
-        user_id.created_at
-
-      ]
+      "INSERT INTO projectDescription (username, content, created_at) VALUES ($1, $2, $3) RETURNING *",
+      [user_id.username, user_id.content, user_id.created_at]
     );
     return createProject;
   } catch (error) {
@@ -42,13 +40,8 @@ const createProject = async (user_id) => {
 const updateProject = async (id, user_id) => {
   try {
     const updateProject = await db.one(
-      "UPDATE destinationchanges SET username=$1, content=$2, created_at=$3 WHERE id=$4 RETURNING *",
-      [
-        user_id.username,
-        user_id.content,
-        user_id.created_at,
-        id
-      ]
+      "UPDATE projectDescription SET username=$1, content=$2, created_at=$3 WHERE id=$4 RETURNING *",
+      [user_id.username, user_id.content, user_id.created_at, id]
     );
     return updateProject;
   } catch (error) {
@@ -60,7 +53,7 @@ const updateProject = async (id, user_id) => {
 const deleteProject = async (id) => {
   try {
     const deleteProject = await db.one(
-      "DELETE FROM destinationchanges WHERE ID = $1 RETURNING *",
+      "DELETE FROM projectDescription WHERE ID = $1 RETURNING *",
       id
     );
     return deleteProject;
@@ -74,5 +67,5 @@ module.exports = {
   getAProject,
   createProject,
   updateProject,
-  deleteProject
+  deleteProject,
 };

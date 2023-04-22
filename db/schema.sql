@@ -4,7 +4,7 @@ CREATE DATABASE destinationchange;
 \c destinationchange;
 
 CREATE TABLE users (
-  id INT PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   username VARCHAR(50) NOT NULL,
   email VARCHAR(100) NOT NULL,
   password VARCHAR(255) NOT NULL,
@@ -29,8 +29,8 @@ CREATE TABLE region (
   name VARCHAR(50) NOT NULL
 );
 
-DROP TABLE IF EXISTS projectdescription;
-CREATE TABLE projectdescription (
+DROP TABLE IF EXISTS projectDescription;
+CREATE TABLE projectDescription (
   id INT PRIMARY KEY,
   user_id INT NOT NULL,
   content TEXT,
