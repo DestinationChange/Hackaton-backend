@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS destinationchange;
 CREATE DATABASE destinationchange;
 \c destinationchange;
 
+DROP TABLE If EXISTS users
 CREATE TABLE users (
   id INT PRIMARY KEY,
   username VARCHAR(50) NOT NULL,
@@ -9,8 +10,8 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL,
   region_id INT,
   about TEXT,
-  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   image TEXT
 );
 
@@ -23,15 +24,17 @@ CREATE TABLE users (
 --   FOREIGN KEY (post_id) REFERENCES posts(id)
 -- );
 
+DROP TABLE IF EXISTS region 
 CREATE TABLE region (
   id INT PRIMARY KEY,
   name VARCHAR(50) NOT NULL
 );
 
+DROP TABLE IF EXISTS projectdescription
 CREATE TABLE projectdescription (
   id INT PRIMARY KEY,
   user_id INT NOT NULL,
   content TEXT,
-  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );
