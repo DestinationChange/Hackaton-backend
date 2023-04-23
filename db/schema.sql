@@ -32,7 +32,7 @@ CREATE TABLE region (
 DROP TABLE IF EXISTS projectDescription;
 CREATE TABLE projectDescription(
   id SERIAL PRIMARY KEY,
-  user_id INT NOT NULL,
+  user_id SERIAL,
   content TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
