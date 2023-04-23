@@ -24,7 +24,7 @@ const getARegion = async (id) => {
 const createARegion = async (region) => {
   try {
     const createARegion = await db.one(
-      "INSERT INTO region (username) VALUES ($1) RETURNING *",
+      "INSERT INTO region (name) VALUES ($1) RETURNING *",
       [region.name]
     );
     return createARegion;
@@ -36,11 +36,11 @@ const createARegion = async (region) => {
 //UPDATE
 const updateRegion = async (id, region) => {
   try {
-    const updateRegion = await db.one(
+    const updatedRegion = await db.one(
       "UPDATE region SET name=$1, WHERE id=$2 RETURNING *",
       [region.name, id]
     );
-    return updateRegion;
+    return updatedRegion;
   } catch (error) {
     error;
   }

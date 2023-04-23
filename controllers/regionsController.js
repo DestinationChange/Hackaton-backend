@@ -6,6 +6,7 @@ const {
   createARegion,
   updateRegion,
 } = require("../queries/regions");
+
 // Index
 regions.get("/", async (req, res) => {
   const allRegions = await getAllRegion();
@@ -15,6 +16,7 @@ regions.get("/", async (req, res) => {
     res.status(500).json({ error: "server error" });
   }
 });
+
 // Show
 regions.get("/:id", async (req, res) => {
   const { id } = req.params;
@@ -29,17 +31,22 @@ regions.get("/:id", async (req, res) => {
 // Create
 regions.post("/", async (req, res) => {
   try {
-    const region = await createARegion(req.body);
-    res.json(region);
+    const createdregion = await createARegion(req.body);
+    res.status(200).json(createdregion);
   } catch (error) {
-    res.status(400).json({ error: error });
+    res.status(500).json({ error: "error" });
   }
 });
 
-//Update
+// Update
 regions.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  const updatedRegion = await updateRegion(id, req.body);
-  res.status(200).json(updatedRegion);
+  try {
+    const { id } = req.params;
+    const updatedRegion = await updateRegion(id, req.body);
+    res.status(200).json(updatedRegion);
+  } catch (error) {
+    res.status(404).json({ error: "Region not found" });
+  }
 });
+
 module.exports = regions;

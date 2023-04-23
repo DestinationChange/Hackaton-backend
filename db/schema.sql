@@ -25,13 +25,13 @@ CREATE TABLE users (
 -- );
 
 CREATE TABLE region (
-  id INT PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   name VARCHAR(50) NOT NULL
 );
 
 DROP TABLE IF EXISTS projectDescription;
-CREATE TABLE projectDescription (
-  id INT PRIMARY KEY,
+CREATE TABLE projectDescription(
+  id SERIAL PRIMARY KEY,
   user_id INT NOT NULL,
   content TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
