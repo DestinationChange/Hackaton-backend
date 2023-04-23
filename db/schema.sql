@@ -3,6 +3,8 @@ CREATE DATABASE destinationchange;
 
 \c destinationchange;
 
+DROP TABLE IF EXISTS users;
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(50) NOT NULL,
@@ -15,12 +17,15 @@ CREATE TABLE users (
   image TEXT
 );
 
+DROP TABLE IF EXISTS region;  
+
 CREATE TABLE region (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50) NOT NULL
 );
 
 DROP TABLE IF EXISTS projectDescription;
+
 CREATE TABLE projectDescription(
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
