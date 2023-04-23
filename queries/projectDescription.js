@@ -27,8 +27,8 @@ const getAProject = async (id) => {
 const createProject = async (user_id) => {
   try {
     const createdProject = await db.one(
-      "INSERT INTO projectDescription (content, created_at) VALUES ($1, $2) RETURNING *",
-      [user_id.content, user_id.created_at]
+      "INSERT INTO projectDescription (user_id, content, created_at) VALUES ($1, $2, $3) RETURNING *",
+      [user_id.user_id, user_id.content, user_id.created_at]
     );
     return createdProject;
   } catch (error) {
