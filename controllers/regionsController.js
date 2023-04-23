@@ -4,6 +4,7 @@ const {
   getAllRegion,
   getARegion,
   createARegion,
+  deleteRegion,
   updateRegion,
 } = require("../queries/regions");
 
@@ -35,6 +36,17 @@ regions.post("/", async (req, res) => {
     res.status(200).json(createdregion);
   } catch (error) {
     res.status(500).json({ error: "error" });
+  }
+});
+
+//DELETE
+regions.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedRegion = await deleteRegion(id);
+    res.status(200).json(deletedRegion);
+  } catch (error) {
+    res.status(404).json({ error: "Id not found" });
   }
 });
 

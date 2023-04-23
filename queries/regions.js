@@ -46,9 +46,23 @@ const updateRegion = async (id, region) => {
   }
 };
 
+//DELETE
+const deleteRegion = async (id) => {
+  try {
+    const deletedRegion = await db.one(
+      "DELETE FROM region WHERE ID = $1 RETURNING *",
+      id
+    );
+    return deletedRegion;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   getAllRegion,
   getARegion,
   createARegion,
   updateRegion,
+  deleteRegion,
 };
