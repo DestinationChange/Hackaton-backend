@@ -15,15 +15,6 @@ CREATE TABLE users (
   image TEXT
 );
 
--- CREATE TABLE likes (
---   id INT PRIMARY KEY,
---   user_id INT NOT NULL,
---   post_id INT NOT NULL,
---   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
---   FOREIGN KEY (user_id) REFERENCES users(id),
---   FOREIGN KEY (post_id) REFERENCES posts(id)
--- );
-
 CREATE TABLE region (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50) NOT NULL
@@ -37,11 +28,3 @@ CREATE TABLE projectDescription(
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- CREATE TABLE likes (
---   id INT PRIMARY KEY,
---   user_id INT NOT NULL,
---   post_id INT NOT NULL,
---   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
---   FOREIGN KEY (user_id) REFERENCES users(id),
---   FOREIGN KEY (post_id) REFERENCES posts(id)
--- )
