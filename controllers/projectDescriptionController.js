@@ -1,4 +1,6 @@
 const express = require("express");
+const projectDescription = express.Router();
+
 const {
   getAllProjects,
   getAProject,
@@ -6,10 +8,9 @@ const {
   deleteProject,
   createProject,
 } = require("../queries/projectDescription");
-const projects = express.Router();
 
 //Index
-projects.get("/", async (req, res) => {
+projectDescription.get("/", async (req, res) => {
   const allProjects = await getAllProjects();
   if (allProjects[0]) {
     res.status(200).json(allProjects);
@@ -19,7 +20,7 @@ projects.get("/", async (req, res) => {
 });
 
 //Show
-projects.get("/:id", async (req, res) => {
+projectDescription.get("/:id", async (req, res) => {
   const { id } = req.params;
   const project = await getAProject(id);
   if (project) {
@@ -30,17 +31,17 @@ projects.get("/:id", async (req, res) => {
 });
 
 //CREATE
-projects.post("/", async (req, res) => {
+projectDescription.post("/", async (req, res) => {
   try {
-    const project = await createProject(project);
-    res.status(200).json(createProject);
+    const project = await createProject(req.body);
+    res.status(200).json(project);
   } catch (error) {
     res.status(500).json({ error: "Problem With The Server" });
   }
 });
 
 //DELETE
-projects.delete("/:id", async (req, res) => {
+projectDescription.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const deletedProject = await deleteProject(id);
@@ -51,7 +52,7 @@ projects.delete("/:id", async (req, res) => {
 });
 
 //UPDATE
-projects.put("/:id", async (req, res) => {
+projectDescription.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const updatedProject = await updateProject(id, req.body);
@@ -61,4 +62,4 @@ projects.put("/:id", async (req, res) => {
   }
 });
 
-module.exports = projects;
+module.exports = projectDescription;
